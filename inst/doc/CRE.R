@@ -5,10 +5,12 @@ knitr::opts_chunk$set(
 )
 
 ## ---- eval=FALSE--------------------------------------------------------------
-#  library(devtools)
-#  install_github("NSAPH-Software/CRE", ref="develop")
-#  library("CRE")
+#  install.packages("CRE")
 
 ## ---- eval=FALSE--------------------------------------------------------------
-#  install.packages("CRE")
+#  library(devtools)
+#  install_github("NSAPH-Software/CRE", ref = "develop")
+
+## ---- eval=FALSE--------------------------------------------------------------
+#  library("CRE")
 
