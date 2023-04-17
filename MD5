@@ -1,6 +1,6 @@
-277193001cba3282009a5cf4c3fd85a0 *DESCRIPTION
+b258041f68029f459d18edf1264d70e1 *DESCRIPTION
 cfed9fc031db1a65713cfe3df857cbda *NAMESPACE
-93dd1751e3574fe7e0780c6978db1833 *NEWS.md
+63b11872173c507085ccb51be8a948fc *NEWS.md
 296fa33cd8b91b877b8651bbdf21b941 *R/CRE_package.R
 1af877644025662e1f635a2455a4da73 *R/check_hyper_params.R
 87fb78693b5dc31068cce5594ca5e618 *R/check_input_data.R
@@ -85,10 +85,9 @@ a91c155050879de36966467851d52432 *man/select_rules.Rd
 384f245978f8ab61957b2edfa5f87517 *man/standardize_rules_matrix.Rd
 34d85d517841424d46256cf78a49d562 *man/summary.cre.Rd
 f46e7c174ace4a45acf853fa72462e6c *tests/testthat.R
-e5c8fd081805f202b387be4ba8ff0ea6 *tests/testthat/CRE.log
 d8e57d531c9ee5fc34c8e168af8e8987 *tests/testthat/test-check_input_data.R
 e2f2c9085e40a369e5387c4a30c557df *tests/testthat/test-cre.R
-e7f71ed5b7a6f284a1b7402f3bdaa729 *tests/testthat/test-discover_rules.R
+cca371cf2f3aae7b8148e02e1bcf08fd *tests/testthat/test-discover_rules.R
 6ad7bdf00692b38303350908422011d2 *tests/testthat/test-estimate_cate.R
 cc2b066ebe2198fcb01c674a4632c08c *tests/testthat/test-estimate_ite.R
 d34825ff38dee9baf79bdf431bae51a1 *tests/testthat/test-estimate_ite_aipw.R
