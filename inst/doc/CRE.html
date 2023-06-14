@@ -343,12 +343,12 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="installation" class="section level1">
 <h1>Installation</h1>
 <p>Installing from CRAN.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;CRE&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;CRE&quot;</span>)</span></code></pre></div>
 <p>Installing the latest developing version.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;NSAPH-Software/CRE&quot;</span>, <span class="at">ref =</span> <span class="st">&quot;develop&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;NSAPH-Software/CRE&quot;</span>, <span class="at">ref =</span> <span class="st">&quot;develop&quot;</span>)</span></code></pre></div>
 <p>Import.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CRE&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CRE&quot;</span>)</span></code></pre></div>
 </div>
 <div id="arguments" class="section level1">
 <h1>Arguments</h1>
@@ -456,9 +456,9 @@ are skipped and those values estimates are used instead.</p>
 <p>One can create a customized wrapper for SuperLearner internal
 packages. The following is an example of providing the number of cores
 (e.g., 12) for the xgboost package in a shared memory system.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>m_xgboost <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">nthread =</span> <span class="dv">12</span>, ...) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  SuperLearner<span class="sc">::</span><span class="fu">SL.xgboost</span>(<span class="at">nthread =</span> nthread, ...)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>m_xgboost <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">nthread =</span> <span class="dv">12</span>, ...) {</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  SuperLearner<span class="sc">::</span><span class="fu">SL.xgboost</span>(<span class="at">nthread =</span> nthread, ...)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>Then use “m_xgboost”, instead of “SL.xgboost”.</p>
 </div>
 </div>
@@ -466,82 +466,82 @@ packages. The following is an example of providing the number of cores
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <p>Example 1 (<em>default parameters</em>)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9687</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>, </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">rho =</span> <span class="dv">0</span>, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">n_rules =</span> <span class="dv">2</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">p =</span> <span class="dv">10</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">effect_size =</span> <span class="dv">2</span>, </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;y&quot;</span>]]</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9687</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                                <span class="at">rho =</span> <span class="dv">0</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                                <span class="at">n_rules =</span> <span class="dv">2</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                                <span class="at">p =</span> <span class="dv">10</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                                <span class="at">effect_size =</span> <span class="dv">2</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                                <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>                                <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>                                <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>y <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;y&quot;</span>]]</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X)</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
 <p>Example 2 (<em>personalized ite estimation</em>)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9687</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>, </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">rho =</span> <span class="dv">0</span>, </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">n_rules =</span> <span class="dv">2</span>, </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">p =</span> <span class="dv">10</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">effect_size =</span> <span class="dv">2</span>, </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;y&quot;</span>]]</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>ite_pred <span class="ot">&lt;-</span> ... <span class="co"># personalized ite estimation</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, <span class="at">ite =</span> ite_pred)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9687</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                                <span class="at">rho =</span> <span class="dv">0</span>, </span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                                <span class="at">n_rules =</span> <span class="dv">2</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                                <span class="at">p =</span> <span class="dv">10</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                                <span class="at">effect_size =</span> <span class="dv">2</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>                                <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                                <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>                                <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>  y <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;y&quot;</span>]]</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>  z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>ite_pred <span class="ot">&lt;-</span> ... <span class="co"># personalized ite estimation</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, <span class="at">ite =</span> ite_pred)</span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
 <p>Example 3 (<em>setting parameters</em>)</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9687</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">rho =</span> <span class="dv">0</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">n_rules =</span> <span class="dv">2</span>, </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">p =</span> <span class="dv">10</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">effect_size =</span> <span class="dv">2</span>, </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;y&quot;</span>]]</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>method_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ratio_dis =</span> <span class="fl">0.25</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ite_method_dis=</span><span class="st">&quot;aipw&quot;</span>,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ps_method_dis =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">oreg_method_dis =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ite_method_inf =</span> <span class="st">&quot;aipw&quot;</span>,</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ps_method_inf =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                      <span class="at">oreg_method_inf =</span> <span class="st">&quot;SL.xgboost&quot;</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>hyper_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">intervention_vars =</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>,<span class="st">&quot;x2&quot;</span>,<span class="st">&quot;x3&quot;</span>,<span class="st">&quot;x4&quot;</span>),</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                     <span class="at">offset =</span> <span class="cn">NULL</span>,</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ntrees_rf =</span> <span class="dv">20</span>,</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ntrees_gbm =</span> <span class="dv">20</span>,</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                     <span class="at">node_size =</span> <span class="dv">20</span>,</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>                     <span class="at">max_nodes =</span> <span class="dv">5</span>,</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                     <span class="at">max_depth =</span> <span class="dv">3</span>,</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t_decay =</span> <span class="fl">0.025</span>,</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t_ext =</span> <span class="fl">0.025</span>,</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t_corr =</span> <span class="dv">1</span>,</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t_pvalue =</span> <span class="fl">0.05</span>,</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                     <span class="at">replace =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                     <span class="at">stability_selection =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                     <span class="at">cutoff =</span> <span class="fl">0.8</span>,</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                     <span class="at">pfer =</span> <span class="fl">0.1</span>,</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                     <span class="at">penalty_rl =</span> <span class="dv">1</span>)</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, method_params, hyper_params)</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9687</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>                                  <span class="at">rho =</span> <span class="dv">0</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                                  <span class="at">n_rules =</span> <span class="dv">2</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>                                  <span class="at">p =</span> <span class="dv">10</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                                  <span class="at">effect_size =</span> <span class="dv">2</span>, </span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                                  <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                                  <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>                                  <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>y <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;y&quot;</span>]]</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>method_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ratio_dis =</span> <span class="fl">0.25</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>                      <span class="at">ite_method_dis=</span><span class="st">&quot;aipw&quot;</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>                      <span class="at">ps_method_dis =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>                      <span class="at">oreg_method_dis =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>                      <span class="at">ite_method_inf =</span> <span class="st">&quot;aipw&quot;</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>                      <span class="at">ps_method_inf =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>                      <span class="at">oreg_method_inf =</span> <span class="st">&quot;SL.xgboost&quot;</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>hyper_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">intervention_vars =</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>,<span class="st">&quot;x2&quot;</span>,<span class="st">&quot;x3&quot;</span>,<span class="st">&quot;x4&quot;</span>),</span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>                     <span class="at">offset =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>                     <span class="at">ntrees_rf =</span> <span class="dv">20</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>                     <span class="at">ntrees_gbm =</span> <span class="dv">20</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>                     <span class="at">node_size =</span> <span class="dv">20</span>,</span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>                     <span class="at">max_nodes =</span> <span class="dv">5</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>                     <span class="at">max_depth =</span> <span class="dv">3</span>,</span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>                     <span class="at">t_decay =</span> <span class="fl">0.025</span>,</span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>                     <span class="at">t_ext =</span> <span class="fl">0.025</span>,</span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>                     <span class="at">t_corr =</span> <span class="dv">1</span>,</span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>                     <span class="at">t_pvalue =</span> <span class="fl">0.05</span>,</span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a>                     <span class="at">replace =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>                     <span class="at">stability_selection =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a>                     <span class="at">cutoff =</span> <span class="fl">0.8</span>,</span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a>                     <span class="at">pfer =</span> <span class="fl">0.1</span>,</span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a>                     <span class="at">penalty_rl =</span> <span class="dv">1</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, method_params, hyper_params)</span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
 <p>More synthetic data sets can be generated using
 <code>generate_cre_dataset()</code>.</p>
 </div>
