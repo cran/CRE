@@ -364,64 +364,51 @@ continuous).</p>
 parameters to define the models used, including:<br />
 - <strong><code>ratio_dis</code></strong> The ratio of data delegated to
 the discovery sub-sample (default: 0.5).<br />
-- <strong><code>ite_method_dis</code></strong> The method to estimate
-the individual treatment effect (ITE) on the discovery sub-sample
-(default: ‘aipw’) [1].<br />
-- <strong><code>ps_method_dis</code></strong> The estimation model for
-the propensity score on the discovery sub-sample (default:
-‘SL.xgboost’).<br />
-- <strong><code>or_method_dis</code></strong> The estimation model for
-the outcome regressions estimate_ite_aipw on the discovery sub-sample
-(default: ‘SL.xgboost’).<br />
-- <strong><code>ite_method_inf</code></strong> The method to estimate
-the individual treatment effect (ITE) on the inference sub-sample
-(default: ‘aipw’) [1].<br />
-- <strong><code>ps_method_inf</code></strong> The estimation model for
-the propensity score on the inference subsample (default:
-‘SL.xgboost’).<br />
-- <strong><code>or_method_inf</code></strong> The estimation model for
-the outcome regressions in estimate_ite_aipw on the inference subsample
-(default: ‘SL.xgboost’).</p>
+- <strong><code>ite_method</code></strong> The method to estimate the
+individual treatment effect (default: “aipw”) [1].<br />
+- <strong><code>learner_ps</code></strong> The (<a href="https://CRAN.R-project.org/package=SuperLearner">SuperLearner</a>)
+model for the propensity score estimation (default: “SL.xgboost”, used
+only for “aipw”,“bart”,“cf” ITE estimators).<br />
+- <strong><code>learner_y</code></strong> The (<a href="https://CRAN.R-project.org/package=SuperLearner">SuperLearner</a>)
+model for the outcome estimation (default: “SL.xgboost”, used only for
+“aipw”,“slearner”,“tlearner” and “xlearner” ITE estimators).</p>
 <p><strong><code>hyper_params</code></strong> The list of hyper
 parameters to fine tune the method, including:<br />
 - <strong><code>intervention_vars</code></strong> Intervention-able
 variables used for Rules Generation (default: <code>NULL</code>).<br />
-- <strong><code>offset</code></strong> Name of the covariate to use as
-offset (i.e. ‘x1’) for T-Poisson ITE Estimation. <code>NULL</code> if
-not used (default: <code>NULL</code>).<br />
-- <strong><code>ntrees_rf</code></strong> A number of decision trees for
+- <strong><code>ntrees</code></strong> The number of decision trees for
 random forest (default: 20).<br />
-- <strong><code>ntrees_gbm</code></strong> A number of decision trees
-for the generalized boosted regression modeling algorithm. (default:
-20).<br />
 - <strong><code>node_size</code></strong> Minimum size of the trees’
 terminal nodes (default: 20).<br />
-- <strong><code>max_nodes</code></strong> Maximum number of terminal
-nodes per tree (default: 5).<br />
+- <strong><code>max_rules</code></strong> Maximum number of candidate
+decision rules (default: 50).<br />
 - <strong><code>max_depth</code></strong> Maximum rules length (default:
 3).<br />
-- <strong><code>replace</code></strong> Boolean variable for replacement
-in bootstrapping for rules generation by random forest (default:
-<code>TRUE</code>).<br />
 - <strong><code>t_decay</code></strong> The decay threshold for rules
 pruning (default: 0.025).<br />
 - <strong><code>t_ext</code></strong> The threshold to define too
 generic or too specific (extreme) rules (default: 0.01).<br />
 - <strong><code>t_corr</code></strong> The threshold to define
 correlated rules (default: 1).<br />
-- <strong><code>t_pvalue</code></strong> The threshold to define
-statistically significant rules (default: 0.05).<br />
-- <strong><code>stability_selection</code></strong> Whether or not using
-stability selection for selecting the rules (default:
-<code>TRUE</code>).<br />
+- <strong><code>stability_selection</code></strong> Method for stability
+selection for selecting the rules. <code>vanilla</code> for stability
+selection, <code>error_control</code> for stability selection with error
+control and <code>no</code> for no stability selection (default:
+<code>vanilla</code>).<br />
+- <strong><code>B</code></strong> Number of bootstrap samples for
+stability selection in rules selection and uncertainty quantification in
+estimation (default: 20). - <strong><code>subsample</code></strong>
+Bootstrap ratio subsample for stability selection in rules selection and
+uncertainty quantification in estimation (default: 0.5). -
+<strong><code>offset</code></strong> Name of the covariate to use as
+offset (i.e. “x1”) for T-Poisson ITE Estimation. <code>NULL</code> if
+not used (default: <code>NULL</code>).<br />
 - <strong><code>cutoff</code></strong> Threshold defining the minimum
-cutoff value for the stability scores (default: 0.9).<br />
+cutoff value for the stability scores in Stability Selection (default:
+0.9).<br />
 - <strong><code>pfer</code></strong> Upper bound for the per-family
-error rate (tolerated amount of falsely selected rules) (default:
-1).<br />
-- <strong><code>penalty_rl</code></strong> Order of penalty for rules
-length during LASSO for Regularization (i.e. 0: no penalty, 1:
-rules_length, 2: rules_length^2) (default: 1).</p>
+error rate (tolerated amount of falsely selected rules) in Error Control
+Stability Selection (default: 1).</p>
 <p><strong>Additional Estimates (not required)</strong></p>
 <p><strong><code>ite</code></strong> The estimated ITE vector. If given,
 both the ITE estimation steps in Discovery and Inference are skipped
@@ -431,25 +418,28 @@ both the ITE estimation steps in Discovery and Inference are skipped
 <div id="options-for-the-ite-estimation" class="section level3">
 <h3>Options for the ITE estimation</h3>
 <p><strong>[1]</strong> Options for the ITE estimation are as
-follows:</p>
-<ul>
-<li>S-Learner (<code>slearner</code>)<br />
-</li>
-<li>T-Learner (<code>tlearner</code>)<br />
-</li>
-<li>T-Poisson (<code>tpoisson</code>)<br />
-</li>
-<li>X-Learner (<code>xlearner</code>)<br />
-</li>
-<li>Augmented Inverse Probability Weighting (<code>aipw</code>)<br />
-</li>
-<li>Causal Forests (<code>cf</code>)<br />
-</li>
-<li>Bayesian Additive Regression Trees (<code>bart</code>)</li>
-</ul>
-<p>if other estimates of the ITE are provided in <code>ite</code>
+follows:<br />
+- <a href="https://CRAN.R-project.org/package=SuperLearner">S-Learner</a>
+(<code>slearner</code>).<br />
+- <a href="https://CRAN.R-project.org/package=SuperLearner">T-Learner</a>
+(<code>tlearner</code>)<br />
+- T-Poisson(<code>tpoisson</code>)<br />
+- <a href="https://CRAN.R-project.org/package=SuperLearner">X-Learner</a>
+(<code>xlearner</code>)<br />
+- <a href="https://CRAN.R-project.org/package=SuperLearner">Augmented
+Inverse Probability Weighting</a> (<code>aipw</code>)<br />
+- <a href="https://CRAN.R-project.org/package=grf">Causal Forests</a>
+(<code>cf</code>)<br />
+- <a href="https://CRAN.R-project.org/package=bartCause">Causal Bayesian
+Additive Regression Trees</a> (<code>bart</code>)</p>
+<p>If other estimates of the ITE are provided in <code>ite</code>
 additional argument, both the ITE estimations in discovery and inference
-are skipped and those values estimates are used instead.</p>
+are skipped and those values estimates are used instead. The ITE
+estimator requires also an outcome learner and/or a propensity score
+learner from the <a href="https://CRAN.R-project.org/package=SuperLearner">SuperLearner</a>
+package (i.e., “SL.lm”, “SL.svm”). Both these models are simple
+classifiers/regressors. By default XGBoost algorithm is used for both
+these steps.</p>
 </div>
 <div id="customized-wrapper-for-superlearner" class="section level3">
 <h3>Customized wrapper for SuperLearner</h3>
@@ -481,7 +471,8 @@ packages. The following is an example of providing the number of cores
 <span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X)</span>
 <span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>ite_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(cre_results, X)</span></code></pre></div>
 <p>Example 2 (<em>personalized ite estimation</em>)</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9687</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>, </span>
@@ -499,49 +490,46 @@ packages. The following is an example of providing the number of cores
 <span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>ite_pred <span class="ot">&lt;-</span> ... <span class="co"># personalized ite estimation</span></span>
 <span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, <span class="at">ite =</span> ite_pred)</span>
 <span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a>ite_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(cre_results, X)</span></code></pre></div>
 <p>Example 3 (<em>setting parameters</em>)</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9687</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>, </span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>                                  <span class="at">rho =</span> <span class="dv">0</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                                  <span class="at">n_rules =</span> <span class="dv">2</span>, </span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>                                  <span class="at">p =</span> <span class="dv">10</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                                  <span class="at">effect_size =</span> <span class="dv">2</span>, </span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                                  <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                                  <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>                                  <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>                                <span class="at">rho =</span> <span class="dv">0</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                                <span class="at">n_rules =</span> <span class="dv">2</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>                                <span class="at">p =</span> <span class="dv">10</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                                <span class="at">effect_size =</span> <span class="dv">2</span>, </span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                                <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                                <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>                                <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
 <span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>y <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;y&quot;</span>]]</span>
 <span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
 <span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
 <span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>method_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ratio_dis =</span> <span class="fl">0.25</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>                      <span class="at">ite_method_dis=</span><span class="st">&quot;aipw&quot;</span>,</span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>                      <span class="at">ps_method_dis =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>                      <span class="at">oreg_method_dis =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>                      <span class="at">ite_method_inf =</span> <span class="st">&quot;aipw&quot;</span>,</span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>                      <span class="at">ps_method_inf =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>                      <span class="at">oreg_method_inf =</span> <span class="st">&quot;SL.xgboost&quot;</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>hyper_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">intervention_vars =</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>,<span class="st">&quot;x2&quot;</span>,<span class="st">&quot;x3&quot;</span>,<span class="st">&quot;x4&quot;</span>),</span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>                     <span class="at">offset =</span> <span class="cn">NULL</span>,</span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>                     <span class="at">ntrees_rf =</span> <span class="dv">20</span>,</span>
-<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>                     <span class="at">ntrees_gbm =</span> <span class="dv">20</span>,</span>
-<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>                     <span class="at">node_size =</span> <span class="dv">20</span>,</span>
-<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>                     <span class="at">max_nodes =</span> <span class="dv">5</span>,</span>
-<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>                     <span class="at">max_depth =</span> <span class="dv">3</span>,</span>
-<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>                     <span class="at">t_decay =</span> <span class="fl">0.025</span>,</span>
-<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>                     <span class="at">t_ext =</span> <span class="fl">0.025</span>,</span>
-<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>                     <span class="at">t_corr =</span> <span class="dv">1</span>,</span>
-<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>                     <span class="at">t_pvalue =</span> <span class="fl">0.05</span>,</span>
-<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a>                     <span class="at">replace =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>                     <span class="at">stability_selection =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a>                     <span class="at">cutoff =</span> <span class="fl">0.8</span>,</span>
-<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a>                     <span class="at">pfer =</span> <span class="fl">0.1</span>,</span>
-<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a>                     <span class="at">penalty_rl =</span> <span class="dv">1</span>)</span>
-<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, method_params, hyper_params)</span>
-<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
-<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>method_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ratio_dis =</span> <span class="fl">0.5</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>                      <span class="at">ite_method =</span><span class="st">&quot;aipw&quot;</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>                      <span class="at">learner_ps =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>                      <span class="at">learner_y =</span> <span class="st">&quot;SL.xgboost&quot;</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>hyper_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">intervention_vars =</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>,<span class="st">&quot;x2&quot;</span>,<span class="st">&quot;x3&quot;</span>,<span class="st">&quot;x4&quot;</span>),</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>                     <span class="at">offset =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>                     <span class="at">ntrees =</span> <span class="dv">20</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>                     <span class="at">node_size =</span> <span class="dv">20</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>                     <span class="at">max_rules =</span> <span class="dv">50</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>                     <span class="at">max_depth =</span> <span class="dv">3</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>                     <span class="at">t_decay =</span> <span class="fl">0.025</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>                     <span class="at">t_ext =</span> <span class="fl">0.025</span>,</span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>                     <span class="at">t_corr =</span> <span class="dv">1</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>                     <span class="at">stability_selection =</span> <span class="st">&quot;vanilla&quot;</span>,</span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>                     <span class="at">cutoff =</span> <span class="fl">0.8</span>,</span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>                     <span class="at">pfer =</span> <span class="dv">1</span>,</span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>                     <span class="at">B =</span> <span class="dv">10</span>,</span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>                     <span class="at">subsample =</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, method_params, hyper_params)</span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a>ite_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(cre_results, X)</span></code></pre></div>
 <p>More synthetic data sets can be generated using
 <code>generate_cre_dataset()</code>.</p>
 </div>

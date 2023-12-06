@@ -2,7 +2,7 @@ Type: Package
 Package: CRE
 Title: Interpretable Discovery and Inference of Heterogeneous Treatment
         Effects
-Version: 0.2.4
+Version: 0.2.5
 Authors@R: c(
     person("Naeem", "Khoshnevis", , "nkhoshnevis@g.harvard.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4315-1426", AFFILIATION = "FASRC")),
@@ -39,7 +39,7 @@ Encoding: UTF-8
 Language: en-US
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-06-14 17:40:28 UTC; nak443
+Packaged: 2023-12-06 19:30:02 UTC; nak443
 Author: Naeem Khoshnevis [aut, cre] (<https://orcid.org/0000-0003-4315-1426>,
     FASRC),
   Daniela Maria Garcia [aut] (<https://orcid.org/0000-0003-3226-3561>),
@@ -48,4 +48,4 @@ Author: Naeem Khoshnevis [aut, cre] (<https://orcid.org/0000-0003-4315-1426>,
   Falco Joannes Bargagli Stoffi [aut]
     (<https://orcid.org/0000-0002-6131-8165>)
 Repository: CRAN
-Date/Publication: 2023-06-14 23:12:08 UTC
+Date/Publication: 2023-12-06 19:50:02 UTC

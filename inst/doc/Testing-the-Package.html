@@ -431,38 +431,32 @@ successful Git Branching Model</a> for branching convention.</p>
 <span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
 <span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
 <span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>method_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ratio_dis =</span> <span class="fl">0.25</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>                      <span class="at">ite_method_dis =</span> <span class="st">&quot;aipw&quot;</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>                      <span class="at">include_ps_dis =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>                      <span class="at">ps_method_dis =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>                      <span class="at">ps_method_inf =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>                      <span class="at">oreg_method_dis =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>                      <span class="at">oreg_method_inf =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>                      <span class="at">ite_method_inf =</span> <span class="st">&quot;aipw&quot;</span>,</span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>                      <span class="at">include_ps_inf =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>                      <span class="at">offset =</span> <span class="cn">NULL</span>)</span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a>hyper_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">intervention_vars =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>                     <span class="at">ntrees_rf =</span> <span class="dv">200</span>,</span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a>                     <span class="at">ntrees_gbm =</span> <span class="dv">200</span>,</span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a>                     <span class="at">node_size =</span> <span class="dv">20</span>,</span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a>                     <span class="at">max_nodes =</span> <span class="dv">5</span>,</span>
-<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a>                     <span class="at">max_depth =</span> <span class="dv">15</span>,</span>
-<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a>                     <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a>                     <span class="at">max_decay =</span> <span class="fl">0.025</span>,</span>
-<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a>                     <span class="at">type_decay =</span> <span class="dv">2</span>,</span>
-<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a>                     <span class="at">t_ext =</span> <span class="fl">0.01</span>,</span>
-<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a>                     <span class="at">t_corr =</span> <span class="dv">1</span>,</span>
-<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a>                     <span class="at">t_pvalue =</span> <span class="fl">0.05</span>,</span>
-<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a>                     <span class="at">stability_selection =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a>                     <span class="at">cutoff =</span> <span class="fl">0.6</span>,</span>
-<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a>                     <span class="at">pfer =</span> <span class="dv">1</span>,</span>
-<span id="cb4-43"><a href="#cb4-43" tabindex="-1"></a>                     <span class="at">penalty_rl =</span> <span class="dv">1</span>)</span>
-<span id="cb4-44"><a href="#cb4-44" tabindex="-1"></a></span>
-<span id="cb4-45"><a href="#cb4-45" tabindex="-1"></a><span class="co"># linreg CATE estimation with aipw ITE estimation</span></span>
-<span id="cb4-46"><a href="#cb4-46" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, method_params, hyper_params)</span>
-<span id="cb4-47"><a href="#cb4-47" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
-<span id="cb4-48"><a href="#cb4-48" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span></code></pre></div>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>method_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ratio_dis =</span> <span class="fl">0.5</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>                      <span class="at">ite_method =</span> <span class="st">&quot;aipw&quot;</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>                      <span class="at">learner_ps =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>                      <span class="at">learner_y =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>                      <span class="at">offset =</span> <span class="cn">NULL</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>hyper_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">intervention_vars =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>                     <span class="at">ntrees =</span> <span class="dv">20</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>                     <span class="at">node_size =</span> <span class="dv">20</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>                     <span class="at">max_rules =</span> <span class="dv">50</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a>                     <span class="at">max_depth =</span> <span class="dv">3</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a>                     <span class="at">t_decay =</span> <span class="fl">0.025</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>                     <span class="at">t_ext =</span> <span class="fl">0.01</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a>                     <span class="at">t_corr =</span> <span class="dv">1</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a>                     <span class="at">t_pvalue =</span> <span class="fl">0.05</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a>                     <span class="at">stability_selection =</span> <span class="st">&quot;vanilla&quot;</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a>                     <span class="at">cutoff =</span> <span class="fl">0.6</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a>                     <span class="at">pfer =</span> <span class="dv">1</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a>                     <span class="at">B =</span> <span class="dv">10</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a>                     <span class="at">subsample =</span> <span class="fl">0.5</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a><span class="co"># linreg CATE estimation with aipw ITE estimation</span></span>
+<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, method_params, hyper_params)</span>
+<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
+<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span>
+<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a>ite_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(cre_results, X)</span></code></pre></div>
 </div>
 
 
