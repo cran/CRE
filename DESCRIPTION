@@ -2,7 +2,7 @@ Type: Package
 Package: CRE
 Title: Interpretable Discovery and Inference of Heterogeneous Treatment
         Effects
-Version: 0.2.5
+Version: 0.2.6
 Authors@R: c(
     person("Naeem", "Khoshnevis", , "nkhoshnevis@g.harvard.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4315-1426", AFFILIATION = "FASRC")),
@@ -24,14 +24,14 @@ Description: Provides a new method for interpretable heterogeneous
     it is supported by theoretical convergence guarantees. Bargagli-Stoffi, 
     F. J., Cadei, R., Lee, K., & Dominici, F. (2023) Causal rule ensemble: 
     Interpretable Discovery and Inference of Heterogeneous Treatment Effects.  
-    arXiv preprint <arXiv:2009.09036>.
+    arXiv preprint <doi:10.48550/arXiv.2009.09036>. 
 License: GPL-3
 URL: https://github.com/NSAPH-Software/CRE
 BugReports: https://github.com/NSAPH-Software/CRE/issues
 Depends: R (>= 3.5.0)
 Imports: MASS, stats, logger, gbm, randomForest, methods, xgboost, RRF,
         data.table, xtable, glmnet, bartCause, stabs, stringr,
-        SuperLearner, magrittr, ggplot2, inTrees
+        SuperLearner, magrittr, ggplot2, arules
 Suggests: grf, BART, gnm, covr, knitr, rmarkdown, testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Copyright: Harvard University
@@ -39,7 +39,7 @@ Encoding: UTF-8
 Language: en-US
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-12-06 19:30:02 UTC; nak443
+Packaged: 2024-04-21 20:52:48 UTC; rstudio
 Author: Naeem Khoshnevis [aut, cre] (<https://orcid.org/0000-0003-4315-1426>,
     FASRC),
   Daniela Maria Garcia [aut] (<https://orcid.org/0000-0003-3226-3561>),
@@ -48,4 +48,4 @@ Author: Naeem Khoshnevis [aut, cre] (<https://orcid.org/0000-0003-4315-1426>,
   Falco Joannes Bargagli Stoffi [aut]
     (<https://orcid.org/0000-0002-6131-8165>)
 Repository: CRAN
-Date/Publication: 2023-12-06 19:50:02 UTC
+Date/Publication: 2024-04-21 21:12:36 UTC

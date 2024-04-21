@@ -1,10 +1,32 @@
-| Resource    |  GitHub Actions      |  Code Coverage  |
-| ----------  | -------------------- | --------------- |
-| Platforms   | Windows, macOS, Linux|    codecov      |
-| R CMD check | [![R-CMD-check](https://github.com/nsaph-software/CRE/workflows/R-CMD-check/badge.svg)](https://github.com/nsaph-software/CRE/actions) | [![codecov](https://codecov.io/gh/NSAPH-Software/CRE/branch/develop/graph/badge.svg?token=UMSVOYRKGA)](https://app.codecov.io/gh/NSAPH-Software/CRE)|
-
-
 # CRE
+
+<p align="center">
+  <img src="man/figures/png/CRE_logo.png" height="100" alt="Cover Image"/>
+</p>
+
+
+<div align="center">
+    <a href="https://CRAN.R-project.org/package=CRE">
+        <img src="http://www.r-pkg.org/badges/version-last-release/CRE" alt="CRAN Package Version">
+    </a>
+    <a href="https://joss.theoj.org/papers/86a406543801a395248821c08c7ec03d">
+        <img src="https://joss.theoj.org/papers/86a406543801a395248821c08c7ec03d/status.svg" alt="JOSS Status">
+    </a>
+    <a href="https://github.com/nsaph-software/CRE/actions">
+        <img src="https://github.com/nsaph-software/CRE/workflows/R-CMD-check/badge.svg" alt="R-CMD-check Status">
+    </a>
+    <a href="https://app.codecov.io/gh/NSAPH-Software/CRE">
+        <img src="https://codecov.io/gh/NSAPH-Software/CRE/branch/develop/graph/badge.svg?token=UMSVOYRKGA" alt="Codecov">
+    </a>
+    <a href="http://www.r-pkg.org/pkg/cre">
+        <img src="https://cranlogs.r-pkg.org/badges/grand-total/CRE" alt="CRAN RStudio Mirror Downloads">
+    </a>
+</div>
+
+
+
+
+
 #### Interpretable Discovery and Inference of Heterogeneous Treatment Effects
 
 In health and social sciences, it is critically important to identify subgroups of the study population where a treatment has notable heterogeneity in the causal effects with respect to the average treatment effect (ATE). The bulk of heterogeneous treatment effect (HTE) literature focuses on two major tasks: (i) estimating HTEs by examining the conditional average treatment effect (CATE); (ii) discovering subgroups of a population characterized by HTE. 
@@ -198,38 +220,3 @@ More exhaustive simulation studies and real world experiment of CRE package can 
 
 Please note that the CRE project is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct). By contributing to this project, you agree to abide by its terms. More information about the opening issues and contributing (i.e., git branching model) can be found on [CRE website](https://nsaph-software.github.io/CRE/articles/Contribution.html).
 
-
-
-## References
-
-Causal Rule Ensemble ([methodological paper](https://arxiv.org/abs/2009.09036))
-```bibtex
-@article{bargagli2023causal,
-  title={{Causal rule ensemble: Interpretable Discovery and Inference of Heterogeneous Treatment Effects}},
-  author={Bargagli-Stoffi, Falco J and Cadei, Riccardo and Lee, Kwonsang and Dominici, Francesca},
-  journal={arXiv preprint arXiv:2009.09036},
-  year={2023}
-}
-```
-
-CRE (software paper)
-```bibtex
-@article{cadei2023CRE,
-  title = {CRE: an R package for Interpretable Discovery and Estimation of Heterogeneous Treatment Effect},
-  author = {Cadei, Riccardo and Khoshnevis, Naeem and Bargagli-Stoffi, Falco J and Lee, Kwonsang and Garcia, Daniela Maria},
-  year = {2023},
-  journal={Working paper},
-  url = {},
-}
-```
-
-CRE ([CRAN package](https://CRAN.R-project.org/package=CRE))
-```bibtex
-@Manual{khoshnevis2023CRE,
-  title = {CRE: Interpretable Subgroups Identification Through Ensemble Learning of Causal Rules},
-  author = {Khoshnevis, Naeem and Garcia, Daniela Maria and Cadei, Riccardo and Lee, Kwonsang  and Bargagli-Stoffi, Falco J},
-  year = {2023},
-  note = {R package version 0.2.0.9000},
-  url = {https://github.com/NSAPH-Software/CRE},
-}
-```

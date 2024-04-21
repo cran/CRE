@@ -362,10 +362,10 @@ successful Git Branching Model</a>. As a result, the
 Use <code>devtools::install_github</code> to install the package. If you
 do not specify the <code>ref</code>, it will install the master (or
 main) branch.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">try</span>(<span class="fu">detach</span>(<span class="st">&quot;package:CRE&quot;</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>), <span class="at">silent =</span> <span class="cn">TRUE</span>) <span class="co"># if already you have the package, detach and unload it, to have a new install. </span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;NSAPH-Software/CRE&quot;</span>, <span class="at">ref=</span><span class="st">&quot;develop&quot;</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(CRE)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(<span class="fu">detach</span>(<span class="st">&quot;package:CRE&quot;</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>), <span class="at">silent =</span> <span class="cn">TRUE</span>) <span class="co"># if already you have the package, detach and unload it, to have a new install. </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;NSAPH-Software/CRE&quot;</span>, <span class="at">ref=</span><span class="st">&quot;develop&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CRE)</span></code></pre></div>
 <p>Try <code>?CRE</code>. It should open the package description page
 under the help tab (assuming you are using RStudio).</p>
 </div>
@@ -391,9 +391,9 @@ directory to the project directory
 (<code>Session &gt; Set Working Directory &gt; To Project Directory</code>).</p></li>
 <li><p>Load <code>devtools</code> library and then load CRE.</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">load_all</span>()</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>?CRE</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load_all</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>?CRE</span></code></pre></div>
 </div>
 <div id="forking-the-package" class="section level2">
 <h2>Forking the package</h2>
@@ -404,7 +404,7 @@ click on the <code>Fork</code> button at the top right corner. After
 forking the package, Open your terminal (or Gitbash for Windows,
 Anaconda prompt, …) and run the following command (brackets are not
 included):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>git clone git<span class="co">@github.com:[your user name]/CRE.git</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>git clone git<span class="co">@github.com:[your user name]/CRE.git</span></span></code></pre></div>
 <p>Now, you can modify the codebase and track your modification.
 Navigate to the package folder and Install the package following the
 <strong>Installing the package from source</strong> steps. It is a good
@@ -415,48 +415,48 @@ successful Git Branching Model</a> for branching convention.</p>
 <div id="testing-the-package" class="section level1">
 <h1>Testing the Package</h1>
 <p>Run the following command to test the package.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(CRE)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># Generate sample data</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1358</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                                <span class="at">rho =</span> <span class="dv">0</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                                <span class="at">n_rules =</span> <span class="dv">2</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                                <span class="at">p =</span> <span class="dv">10</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>                                <span class="at">effect_size =</span> <span class="dv">2</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>                                <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>                                <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>                                <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>y <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;y&quot;</span>]]</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>method_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ratio_dis =</span> <span class="fl">0.5</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>                      <span class="at">ite_method =</span> <span class="st">&quot;aipw&quot;</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>                      <span class="at">learner_ps =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>                      <span class="at">learner_y =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>                      <span class="at">offset =</span> <span class="cn">NULL</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>hyper_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">intervention_vars =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>                     <span class="at">ntrees =</span> <span class="dv">20</span>,</span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>                     <span class="at">node_size =</span> <span class="dv">20</span>,</span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>                     <span class="at">max_rules =</span> <span class="dv">50</span>,</span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a>                     <span class="at">max_depth =</span> <span class="dv">3</span>,</span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a>                     <span class="at">t_decay =</span> <span class="fl">0.025</span>,</span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>                     <span class="at">t_ext =</span> <span class="fl">0.01</span>,</span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a>                     <span class="at">t_corr =</span> <span class="dv">1</span>,</span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a>                     <span class="at">t_pvalue =</span> <span class="fl">0.05</span>,</span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a>                     <span class="at">stability_selection =</span> <span class="st">&quot;vanilla&quot;</span>,</span>
-<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a>                     <span class="at">cutoff =</span> <span class="fl">0.6</span>,</span>
-<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a>                     <span class="at">pfer =</span> <span class="dv">1</span>,</span>
-<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a>                     <span class="at">B =</span> <span class="dv">10</span>,</span>
-<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a>                     <span class="at">subsample =</span> <span class="fl">0.5</span>)</span>
-<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a></span>
-<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a><span class="co"># linreg CATE estimation with aipw ITE estimation</span></span>
-<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, method_params, hyper_params)</span>
-<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
-<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span>
-<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a>ite_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(cre_results, X)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CRE)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sample data</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1358</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">generate_cre_dataset</span>(<span class="at">n =</span> <span class="dv">1000</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">rho =</span> <span class="dv">0</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">n_rules =</span> <span class="dv">2</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">p =</span> <span class="dv">10</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">effect_size =</span> <span class="dv">2</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                                <span class="at">binary_covariates =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                                <span class="at">binary_outcome =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">confounding =</span> <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;y&quot;</span>]]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;z&quot;</span>]]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> dataset[[<span class="st">&quot;X&quot;</span>]]</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>method_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ratio_dis =</span> <span class="fl">0.5</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ite_method =</span> <span class="st">&quot;aipw&quot;</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                      <span class="at">learner_ps =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                      <span class="at">learner_y =</span> <span class="st">&quot;SL.xgboost&quot;</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                      <span class="at">offset =</span> <span class="cn">NULL</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>hyper_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">intervention_vars =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ntrees =</span> <span class="dv">20</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                     <span class="at">node_size =</span> <span class="dv">20</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                     <span class="at">max_rules =</span> <span class="dv">50</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                     <span class="at">max_depth =</span> <span class="dv">3</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t_decay =</span> <span class="fl">0.025</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t_ext =</span> <span class="fl">0.01</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t_corr =</span> <span class="dv">1</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                     <span class="at">t_pvalue =</span> <span class="fl">0.05</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                     <span class="at">stability_selection =</span> <span class="st">&quot;vanilla&quot;</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                     <span class="at">cutoff =</span> <span class="fl">0.6</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                     <span class="at">pfer =</span> <span class="dv">1</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>                     <span class="at">B =</span> <span class="dv">10</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                     <span class="at">subsample =</span> <span class="fl">0.5</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co"># linreg CATE estimation with aipw ITE estimation</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>cre_results <span class="ot">&lt;-</span> <span class="fu">cre</span>(y, z, X, method_params, hyper_params)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cre_results)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cre_results)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>ite_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(cre_results, X)</span></code></pre></div>
 </div>
 
 
