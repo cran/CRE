@@ -1,10 +1,10 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ---- warning=FALSE, eval=FALSE-----------------------------------------------
+## ----warning=FALSE, eval=FALSE------------------------------------------------
 #  library(CRE)
 #  
 #  # Generate sample data
